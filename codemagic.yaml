@@ -11,10 +11,10 @@ workflow:
       - push
   scripts:
     - name: Fetching app sources
-      script: | 
+      script: |
         echo "Sources fetched successfully"
     - name: Build Android APK
-      script: | 
+      script: |
         cd sultan_voic_app && flutter build apk --release
   artifacts:
     - sultan_voic_app/build/app/outputs/flutter-apk/app-release.apk
