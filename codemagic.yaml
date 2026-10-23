@@ -1,11 +1,20 @@
-workflows:
-  android-workflow:
-    name: Sultan Voice Android Build
-    max_build_duration: 60
-    instance_type: mac_mini_m1
-    scripts:
-      - name: Build Android APK
-        script: |
-          cd android && ./gradlew assembleRelease
-    artifacts:
-      - app/build/outputs/apk/**/*.apk
+# Configuration for Sultan Voice Android Build
+workflow:
+  name: Sultan Voice Android Build
+  instance_type: mac_mini_m2
+  max_build_duration: 60
+  environment:
+    flutter: stable
+    xcode: stable
+  triggering:
+    events:
+      - push
+  scripts:
+    - name: Fetching app sources
+      script: | 
+        echo "Sources fetched successfully"
+    - name: Build Android APK
+      script: | 
+        cd sultan_voic_app && flutter build apk --release
+  artifacts:
+    - sultan_voic_app/build/app/outputs/flutter-apk/app-release.apk
